@@ -1,0 +1,55 @@
+﻿@model Library.WebUI.Models.BooksListViewModel
+@using Library.WebUI.HtmlHelpers
+
+@{
+    ViewBag.Title = "Books";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List of books</h2>
+
+@using (Html.BeginForm("List", "Book"))
+{
+<div>
+    <p>
+        Title: <input type="text" name="searchString">
+        <input type="submit" value="Search" />
+    </p>
+</div>
+}
+<p> @ViewBag.SearchMessage </p>
+<table class="table">
+    <tr>
+        <th />
+        <th>
+            Title
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Author
+        </th>
+        <th>
+            Year
+        </th>
+    </tr>
+    
+    @foreach (var item in Model.Books)
+    {
+        <tr>
+            @{Html.RenderPartial("BookSummary", item);}
+        </tr>
+     }
+
+    
+
+</table>
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List",
+                            new { page = x, category = Model.CurrentCategory }))
+</div>
+
+
+
+

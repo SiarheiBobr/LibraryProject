@@ -1,0 +1,48 @@
+﻿@model Library.WebUI.Models.BookingsListViewModel
+@using Library.WebUI.HtmlHelpers
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>List of bookings</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Author
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            User
+        </th>
+        <th>
+            Booking Date
+        </th>
+        <th>
+            Issued Date
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (Library.Domain.Entities.Booking item in Model.Bookings)
+    {
+        <tr>
+            @{Html.RenderPartial("BookingSummary", item);}
+            <td>
+                @Html.ActionLink("Hand out", "HandOut", new { bookingid = item.BookingID }) |
+                @Html.ActionLink("Delete", "Delete", new { bookingid = item.BookingID })  
+            </td>
+        </tr>
+    }
+
+
+
+    </table>
+

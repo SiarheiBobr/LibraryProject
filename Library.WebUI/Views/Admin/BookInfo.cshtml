@@ -1,0 +1,92 @@
+﻿@model Library.Domain.Entities.Book
+
+@{
+    ViewBag.Title = "BookInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>BookInfo</h2>
+
+<div>
+    <h4>Book</h4>
+    <hr />
+    <div class="form-group">
+
+        <div class="editor-field">
+            @if (Model.ImageData == null)
+            {
+                @:None
+            }
+            else
+            {
+                <img width="150" height="150"
+                     src="@Url.Action("GetImage", "Book", new { Model.BookID })" />
+            }
+
+        </div>
+    </div>
+    <dl class="dl-horizontal">
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Count)
+        </dd>
+
+
+
+
+
+
+
+    </dl>
+</div>
+<p>
+
+    @Html.ActionLink("Back to List", "List")
+</p>
+
